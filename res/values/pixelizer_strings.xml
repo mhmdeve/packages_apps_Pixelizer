@@ -113,4 +113,8 @@
     <string name="flashlight_on_call_no_ringer">When ringer is silent</string>
     <string name="flashlight_on_call_silent">When entirely silent (no ringer or vibrator)</string>
     <string name="flashlight_on_call_always">Always</string>
+
+    <!-- Launch music player when headset is connected -->
+    <string name="headset_connect_player_title">Launch music app on headset connection</string>
+    <string name="headset_connect_player_summary">Launch the default music app when headset is connected</string>
 </resources>
