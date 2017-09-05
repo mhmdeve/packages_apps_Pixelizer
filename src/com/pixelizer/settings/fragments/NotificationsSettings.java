@@ -20,16 +20,28 @@ import com.android.internal.logging.nano.MetricsProto;
 
 import android.os.Bundle;
 import com.android.settings.R;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceScreen;
+import android.content.ContentResolver;
 
 import com.android.settings.SettingsPreferenceFragment;
-
+import com.pixelizer.settings.Utils;
 public class NotificationsSettings extends SettingsPreferenceFragment {
+
+    private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.pixelizer_settings_notifications);
+        PreferenceScreen prefScreen = getPreferenceScreen();
+        final ContentResolver resolver = getActivity().getContentResolver();
+
+        PreferenceCategory incallVibCategory = (PreferenceCategory) findPreference(INCALL_VIB_OPTIONS);
+        if (!Utils.isVoiceCapable(getActivity())) {
+            prefScreen.removePreference(incallVibCategory);
+        }
     }
 
     @Override
