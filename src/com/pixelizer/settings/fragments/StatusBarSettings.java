@@ -29,6 +29,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceScreen;
@@ -60,12 +61,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String BATTERY_STYLE = "status_bar_battery_style";
     private static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String SHOW_BATTERY_PERCENT_INSIDE = "status_bar_show_battery_percent_inside";
+    private static final String QUICK_PULLDOWN = "qs_quick_pulldown";
 
     private SystemSettingMasterSwitchPreference mNetTrafficState;
     private SystemSettingListPreference mBatteryStyle;
     private SystemSettingSwitchPreference mBatteryPercent;
     private SystemSettingSwitchPreference mBatteryPercentInside;
     private SystemSettingListPreference mClockPosition;
+    private ListPreference mQuickPulldown;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -82,6 +85,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                 NETWORK_TRAFFIC_STATE, 0) == 1;
         mNetTrafficState.setChecked(enabled);
         updateNetTrafficSummary(enabled);
+
+        // Quick Pulldown
+        mQuickPulldown = (ListPreference) findPreference(QUICK_PULLDOWN);
+        mQuickPulldown.setOnPreferenceChangeListener(this);
+        int quickPulldownValue = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 0, UserHandle.USER_CURRENT);
+        mQuickPulldown.setValue(String.valueOf(quickPulldownValue));
+        updateQuickPulldownSummary(quickPulldownValue);
 
         int value = Settings.System.getIntForUser(resolver,
         BATTERY_STYLE, 0, UserHandle.USER_CURRENT);
@@ -135,7 +146,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                     SHOW_BATTERY_PERCENT, enabled ? 1 : 0);
             mBatteryPercentInside.setEnabled(enabled);
             return true;
-        }
+        } else if (preference == mQuickPulldown) {
+            int quickPulldownValue = Integer.valueOf((String) objValue);
+            Settings.System.putIntForUser(resolver, Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
+                    quickPulldownValue, UserHandle.USER_CURRENT);
+            updateQuickPulldownSummary(quickPulldownValue);
+            return true;
+	}
         return false;
     }
 
@@ -165,7 +182,24 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         }
         mNetTrafficState.setSummary(summary);
     }
-    
+
+    private void updateQuickPulldownSummary(int value) {
+        Resources res = getResources();
+
+        if (value == 0) {
+            // quick pulldown deactivated
+            mQuickPulldown.setSummary(res.getString(R.string.quick_pulldown_off));
+        } else if (value == 3) {
+            // quick pulldown always
+            mQuickPulldown.setSummary(res.getString(R.string.quick_pulldown_summary_always));
+        } else {
+            String direction = res.getString(value == 2
+                    ? R.string.quick_pulldown_left
+                    : R.string.quick_pulldown_right);
+            mQuickPulldown.setSummary(res.getString(R.string.quick_pulldown_summary, direction));
+        }
+    }
+
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.CUSTOM_SETTINGS;
