@@ -19,4 +19,11 @@
     android:title="@string/statusbar_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <!-- Network Traffic Monitor -->
+    <com.pixelizer.settings.preferences.SystemSettingMasterSwitchPreference
+        android:key="network_traffic_state"
+        android:title="@string/network_traffic_state_title"
+        android:summary="@string/network_traffic_state_summary"
+        android:fragment="com.pixelizer.settings.fragments.NetTrafficMonSettings"
+        android:defaultValue="false" />
 </PreferenceScreen>
