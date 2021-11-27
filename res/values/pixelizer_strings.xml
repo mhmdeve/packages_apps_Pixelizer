@@ -128,4 +128,8 @@
     <string name="mic_camera_privacy_indicator_summary">Show separate indicator when an any app uses mic or camera</string>
     <string name="location_privacy_indicator_title">Location privacy indicator</string>
     <string name="location_privacy_indicator_summary">Show separate indicator when an any app uses location</string>
+
+    <!-- Location Privacy Indicator -->
+    <string name="location_privacy_title"> Show Location Privacy Indicator</string>
+    <string name="location_privacy_summary">Enable - Disable location privacy indicator in qs and sb</string>
 </resources>
