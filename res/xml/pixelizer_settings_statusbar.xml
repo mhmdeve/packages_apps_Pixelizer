@@ -67,5 +67,5 @@
             android:title="@string/location_privacy_indicator_title"
             android:summary="@string/location_privacy_indicator_summary"
             android:defaultValue="false" />
-                </PreferenceCategory>
+    </PreferenceCategory>
 </PreferenceScreen>
