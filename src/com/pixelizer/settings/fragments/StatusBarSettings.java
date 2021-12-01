@@ -76,7 +76,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final int BATTERY_STYLE_TEXT = 4;
     private static final int BATTERY_STYLE_HIDDEN = 5;
     private static final int BATTERY_PERCENT_HIDDEN = 0;
-    private static final int BATTERY_PERCENT_SHOW = 2;
+    
     private ListPreference mBatteryPercent;
     private ListPreference mBatteryStyle;
     private int mBatteryPercentValue;
@@ -115,15 +115,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         mBatteryStyle.setOnPreferenceChangeListener(this);
 
         mBatteryPercentValue = Settings.System.getIntForUser(getContentResolver(),
-                Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT, 0, UserHandle.USER_CURRENT);
-        mBatteryPercentValuePrev = Settings.System.getIntForUser(getContentResolver(),
-                Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT + "_prev", -1, UserHandle.USER_CURRENT);
+        Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT, BATTERY_PERCENT_HIDDEN, UserHandle.USER_CURRENT);
 
         mBatteryPercent = (ListPreference) findPreference(PREF_STATUS_BAR_SHOW_BATTERY_PERCENT);
         mBatteryPercent.setValue(String.valueOf(mBatteryPercentValue));
         mBatteryPercent.setSummary(mBatteryPercent.getEntry());
         mBatteryPercent.setOnPreferenceChangeListener(this);
-        updateBatteryOptions(batterystyle, mBatteryPercentValue);
+        mBatteryPercent.setEnabled(
+            batterystyle != BATTERY_STYLE_TEXT && batterystyle != BATTERY_STYLE_HIDDEN);
     }
 
     @Override
@@ -154,9 +153,12 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             return true;
         } else if (preference == mBatteryStyle) {
             int batterystyle = Integer.parseInt((String) objValue);
-            updateBatteryOptions(batterystyle, mBatteryPercentValue);
-            int index = mBatteryStyle.findIndexOfValue((String) objValue);
+            Settings.System.putIntForUser(resolver,
+            Settings.System.STATUS_BAR_BATTERY_STYLE, batterystyle,
+            UserHandle.USER_CURRENT);            int index = mBatteryStyle.findIndexOfValue((String) objValue);
             mBatteryStyle.setSummary(mBatteryStyle.getEntries()[index]);
+            mBatteryPercent.setEnabled(
+            batterystyle != BATTERY_STYLE_TEXT && batterystyle != BATTERY_STYLE_HIDDEN);
             return true;
         } else if (preference == mBatteryPercent) {
             mBatteryPercentValue = Integer.parseInt((String) objValue);
@@ -190,37 +192,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                     : getActivity().getString(R.string.traffic_expanded_statusbar));
         }
         mNetTrafficState.setSummary(summary);
-    }
-
-    private void updateBatteryOptions(int batterystyle, int batterypercent) {
-        ContentResolver resolver = getActivity().getContentResolver();
-        switch (batterystyle) {
-            case BATTERY_STYLE_TEXT:
-                handleTextPercentage(BATTERY_PERCENT_SHOW);
-                break;
-            case BATTERY_STYLE_HIDDEN:
-                handleTextPercentage(BATTERY_PERCENT_HIDDEN);
-                break;
-            default:
-                mBatteryPercent.setEnabled(true);
-                if (mBatteryPercentValuePrev != -1) {
-                    Settings.System.putIntForUser(resolver,
-                            Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT,
-                            mBatteryPercentValuePrev, UserHandle.USER_CURRENT);
-                    Settings.System.putIntForUser(resolver,
-                            Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT + "_prev",
-                            -1, UserHandle.USER_CURRENT);
-                    mBatteryPercentValue = mBatteryPercentValuePrev;
-                    mBatteryPercentValuePrev = -1;
-                    int index = mBatteryPercent.findIndexOfValue(String.valueOf(mBatteryPercentValue));
-                    mBatteryPercent.setSummary(mBatteryPercent.getEntries()[index]);
-                }
-
-                Settings.System.putIntForUser(resolver,
-                        Settings.System.STATUS_BAR_BATTERY_STYLE, batterystyle,
-                        UserHandle.USER_CURRENT);
-                break;
-        }
     }
 
     private void updateQuickPulldownSummary(int value) {
