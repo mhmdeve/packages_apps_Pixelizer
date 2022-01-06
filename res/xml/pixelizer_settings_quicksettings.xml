@@ -32,4 +32,11 @@
         android:dependency="qs_footer_text_show"
         android:defaultValue="PixelPlusUI" />
 
+    <!-- QS Battery estimates -->
+    <com.pixelizer.settings.preferences.SystemSettingSwitchPreference
+        android:key="qs_show_battery_estimate"
+        android:title="@string/qs_show_battery_estimate_title"
+        android:summaryOn="@string/qs_show_battery_estimate_summary_on"
+        android:summaryOff="@string/qs_show_battery_estimate_summary_off"
+        android:defaultValue="true" />
 </PreferenceScreen>
