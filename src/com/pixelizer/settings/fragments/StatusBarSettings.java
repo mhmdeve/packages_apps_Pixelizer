@@ -59,11 +59,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String BATTERY_STYLE = "status_bar_battery_style";
     private static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String SHOW_BATTERY_PERCENT_INSIDE = "status_bar_show_battery_percent_inside";
+    private static final String CLOCK_POSITION = "statusbar_clock_position";
 
     private SystemSettingMasterSwitchPreference mNetTrafficState;
     private SystemSettingListPreference mBatteryStyle;
     private SystemSettingSwitchPreference mBatteryPercent;
     private SystemSettingSwitchPreference mBatteryPercentInside;
+    private SystemSettingListPreference mClockPosition;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -98,6 +100,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         mBatteryStyle.setSummary(mBatteryStyle.getEntry());
         mBatteryStyle.setOnPreferenceChangeListener(this);
         updatePercentEnablement(value != 2);
+
+        mClockPosition = findPreference(CLOCK_POSITION);
+        int value = Settings.System.getIntForUser(resolver,
+                CLOCK_POSITION, 0, UserHandle.USER_CURRENT);
+        mClockPosition.setValue(Integer.toString(value));
+        mClockPosition.setSummary(mClockPosition.getEntry());
+        mClockPosition.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -116,6 +125,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             Settings.System.putIntForUser(resolver,
                     BATTERY_STYLE, value, UserHandle.USER_CURRENT);
             updatePercentEnablement(value != 2);
+            return true;
+        } else if (preference == mClockPosition) {
+            int value = Integer.parseInt((String) objValue);
+            int index = mClockPosition.findIndexOfValue((String) objValue);
+            mClockPosition.setSummary(mClockPosition.getEntries()[index]);
+            Settings.System.putIntForUser(resolver,
+                    CLOCK_POSITION, value, UserHandle.USER_CURRENT);
             return true;
         } else if (preference == mBatteryPercent) {
             boolean enabled = (boolean) objValue;
