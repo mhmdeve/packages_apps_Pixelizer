@@ -51,6 +51,21 @@
             android:title="@string/battery_percent_inside_title"
             android:summary="@string/battery_percent_inside_summary"
             android:defaultValue="false" />
-
     </PreferenceCategory>
+
+    <!-- Privacy Indicator Customization -->
+    <PreferenceCategory
+        android:title="@string/privacy_indicator">
+        <com.pixelizer.settings.preferences.SecureSettingSwitchPreference
+            android:key="enable_camera_privacy_indicator"
+            android:title="@string/mic_camera_privacy_indicator_title"
+            android:summary="@string/mic_camera_privacy_indicator_summary"
+            android:defaultValue="true" />
+
+        <com.pixelizer.settings.preferences.SecureSettingSwitchPreference
+            android:key="enable_location_privacy_indicator"
+            android:title="@string/location_privacy_indicator_title"
+            android:summary="@string/location_privacy_indicator_summary"
+            android:defaultValue="false" />
+                </PreferenceCategory>
 </PreferenceScreen>
