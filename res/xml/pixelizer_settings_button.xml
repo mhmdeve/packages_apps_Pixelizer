@@ -19,10 +19,11 @@
     android:title="@string/button_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-
-    <PreferenceScreen
-        android:key="volume_key"
-        android:fragment="com.pixelizer.settings.fragments.VolumeSettings"
-        android:title="@string/volume_title" />
+        <!-- Volume panel to left -->
+        <com.pixelizer.settings.preferences.SystemSettingSwitchPreference
+            android:key="volume_panel_on_left"
+            android:title="@string/volume_panel_on_left_title"
+            android:summary="@string/volume_panel_on_left_summary"
+            android:defaultValue="false" />
 
 </PreferenceScreen>
