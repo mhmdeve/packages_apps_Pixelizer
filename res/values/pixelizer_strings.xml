@@ -122,4 +122,10 @@
     <string name="volume_panel_on_left_title">Show volume panel on left</string>
     <string name="volume_panel_on_left_summary">Display volume panel on the left side of the screen</string>
 
+    <!-- Privacy indicators -->
+    <string name="privacy_indicator">Privacy Indicator</string>
+    <string name="mic_camera_privacy_indicator_title">Mic and camera privacy indicator</string>
+    <string name="mic_camera_privacy_indicator_summary">Show separate indicator when an any app uses mic or camera</string>
+    <string name="location_privacy_indicator_title">Location privacy indicator</string>
+    <string name="location_privacy_indicator_summary">Show separate indicator when an any app uses location</string>
 </resources>
