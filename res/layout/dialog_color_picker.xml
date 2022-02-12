@@ -112,7 +112,7 @@
 
     </LinearLayout>
 
-    <com.pixelizer.settings.preferences.ColorPickerView
+    <com.pixelizer.settings.preferences.colorpicker.ColorPickerView
         android:id="@+id/color_picker_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
         android:layout_marginEnd="4dp"
         android:layout_marginTop="2dp">
 
-        <com.pixelizer.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.colorpicker.ColorPickerPanelView
             android:id="@+id/userset1_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -142,7 +142,7 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="0.5" />
 
-        <com.pixelizer.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.colorpicker.ColorPickerPanelView
             android:id="@+id/userset2_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -150,7 +150,7 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="0.5" />
 
-        <com.pixelizer.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.colorpicker.ColorPickerPanelView
             android:id="@+id/userset3_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -158,7 +158,7 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="0.5" />
 
-        <com.pixelizer.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.colorpicker.ColorPickerPanelView
             android:id="@+id/userset4_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -166,7 +166,7 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="0.5" />
 
-        <com.pixelizer.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.colorpicker.ColorPickerPanelView
             android:id="@+id/userset5_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -174,7 +174,7 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="0.5" />
 
-        <com.pixelizer.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.colorpicker.ColorPickerPanelView
             android:id="@+id/userset6_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -200,7 +200,7 @@
         android:orientation="horizontal"
         android:layout_marginBottom="10dp">
 
-        <com.pixelizer.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.colorpicker.ColorPickerPanelView
             android:id="@+id/old_color_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -215,7 +215,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp" />
 
-        <com.pixelizer.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.colorpicker.ColorPickerPanelView
             android:id="@+id/new_color_panel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

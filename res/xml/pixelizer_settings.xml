@@ -18,6 +18,12 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/pixelizer_settings_title" >
 
+        <!-- Monet -->
+        <Preference
+        android:key="customisation"
+        android:fragment="com.pixelizer.settings.fragments.Customisation"
+        android:icon="@drawable/ic_monet"
+        android:title="@string/customisation_title" />
         <!-- Status Bar -->
         <Preference
             android:key="statusbar_category"
