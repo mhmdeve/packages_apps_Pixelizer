@@ -79,9 +79,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                 findPreference(NETWORK_TRAFFIC_STATE);
         mNetTrafficState.setOnPreferenceChangeListener(this);
         boolean enabled = Settings.System.getInt(resolver,
-                Settings.System.NETWORK_TRAFFIC_STATE, 0) == 1;
+                NETWORK_TRAFFIC_STATE, 0) == 1;
         mNetTrafficState.setChecked(enabled);
-    
+        updateNetTrafficSummary(enabled);
+
         mBatteryPercentInside = (SystemSettingSwitchPreference)
         findPreference(SHOW_BATTERY_PERCENT_INSIDE);
         mBatteryPercent = (SystemSettingSwitchPreference)
@@ -110,13 +111,19 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        updateNetTrafficSummary();
+    }
+
+    @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
  
         if (preference == mNetTrafficState) {
             boolean enabled = (boolean) objValue;
-            Settings.System.putInt(resolver,
-                    Settings.System.NETWORK_TRAFFIC_STATE, enabled ? 1 : 0);
+            Settings.System.putInt(resolver, NETWORK_TRAFFIC_STATE, enabled ? 1 : 0);
+            updateNetTrafficSummary(enabled);
             return true;
         } else if (preference == mBatteryStyle) {
             int value = Integer.valueOf((String) objValue);
@@ -148,6 +155,28 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         mBatteryPercentInside.setEnabled(enabled && mBatteryPercent.isChecked());
     }
 
+    private void updateNetTrafficSummary() {
+        final boolean enabled = Settings.System.getInt(
+                getActivity().getContentResolver(),
+                NETWORK_TRAFFIC_STATE, 0) == 1;
+        updateNetTrafficSummary(enabled);
+    }
+
+    private void updateNetTrafficSummary(boolean enabled) {
+        if (mNetTrafficState == null) return;
+        String summary = getActivity().getString(R.string.switch_off_text);
+        if (enabled) {
+            final boolean onStatus = Settings.System.getInt(
+                    getActivity().getContentResolver(),
+                    Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION, 0) == 0;
+            summary = getActivity().getString(R.string.network_traffic_state_summary);
+            summary += " " + (onStatus
+                    ? getActivity().getString(R.string.traffic_statusbar)
+                    : getActivity().getString(R.string.traffic_expanded_statusbar));
+        }
+        mNetTrafficState.setSummary(summary);
+    }
+    
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.CUSTOM_SETTINGS;
