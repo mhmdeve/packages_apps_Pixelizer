@@ -23,6 +23,7 @@
         android:fragment="com.pixelizer.settings.fragments.Customisation"
         android:icon="@drawable/ic_monet"
         android:title="@string/customisation_title" />
+        
         <!-- Status Bar -->
         <Preference
             android:key="statusbar_category"
@@ -38,25 +39,25 @@
             android:icon="@drawable/ic_settings_quicksettings"/>
 
         <!-- Buttons -->
-        <Preference
+        <!-- <Preference
             android:key="buttonsettings_category"
             android:title="@string/button_title"
             android:fragment="com.pixelizer.settings.fragments.ButtonSettings"
-            android:icon="@drawable/ic_settings_buttons"/>
+            android:icon="@drawable/ic_settings_buttons"/> -->
 
         <!-- Navigation Bar -->
-        <Preference
+        <!-- <Preference
             android:key="navigationbar_category"
             android:title="@string/navbar_title"
             android:fragment="com.pixelizer.settings.fragments.NavigationBarSettings"
-            android:icon="@drawable/ic_settings_navbar"/>
+            android:icon="@drawable/ic_settings_navbar"/> -->
 
         <!-- Gestures -->
-        <Preference
+        <!-- <Preference
             android:key="gestures_category"
             android:title="@string/gestures_title"
             android:fragment="com.pixelizer.settings.fragments.GestureSettings"
-            android:icon="@drawable/ic_settings_pdgestures"/>
+            android:icon="@drawable/ic_settings_pdgestures"/> -->
 
         <!-- Lock Screen -->
         <Preference
@@ -66,18 +67,18 @@
             android:icon="@drawable/ic_settings_lockscreens"/>
 
         <!-- Power Menu -->
-        <Preference
+        <!-- <Preference
             android:key="powermenu_category"
             android:title="@string/powermenu_title"
             android:fragment="com.pixelizer.settings.fragments.PowerMenuSettings"
-            android:icon="@drawable/ic_settings_powermenu"/>
+            android:icon="@drawable/ic_settings_powermenu"/> -->
 
         <!-- Recents -->
-        <Preference
+        <!-- <Preference
             android:key="recents_category"
             android:title="@string/recents_title"
             android:fragment="com.pixelizer.settings.fragments.RecentsSettings"
-            android:icon="@drawable/ic_settings_recents"/>
+            android:icon="@drawable/ic_settings_recents"/> -->
 
         <!-- Notifications -->
         <Preference
