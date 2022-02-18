@@ -18,7 +18,24 @@
     android:title="@string/lockscreen_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <com.android.settings.custom.preference.SecureSettingSwitchPreference
+    <PreferenceCategory
+        android:key="udfps_category"
+        android:title="@string/udfps_category">
+
+        <Preference
+            android:key="udfps_icon_picker"
+            android:title="@string/udfps_icon_picker_title"
+            android:summary="@string/udfps_icon_picker_summary"
+            android:fragment="com.pixelizer.settings.fragments.UdfpsIconPicker" />
+
+        <Preference
+            android:key="udfps_recognizing_animation_preview"
+            android:title="@string/udfps_recog_animation_effect_title"
+            android:summary="@string/udfps_recog_animation_effect_summary"
+            android:fragment="com.pixelizer.settings.fragments.UdfpsAnimation"/>
+          </PreferenceCategory>
+
+     <com.pixelizer.settings.preferences.SecureSettingSwitchPreference
         android:key="lockscreen_battery_info"
         android:title="@string/lockscreen_battery_info_title"
         android:summary="@string/lockscreen_battery_info_summary"

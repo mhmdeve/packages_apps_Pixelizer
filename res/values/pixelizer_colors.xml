@@ -33,5 +33,5 @@
     <color name="userpanel_default6">#ff37474f</color>
 
     <color name="disabled_text_color">#66000000</color>
-
+    <color name="option_border_default">#5f6368</color>
 </resources>
