@@ -32,6 +32,8 @@ public class LockScreenSettings extends SettingsPreferenceFragment {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        addPreferencesFromResource(R.xml.pixelizer_settings_lockscreen);
+
         final PreferenceScreen screen = getPreferenceScreen();
         boolean udfpsResPkgInstalled = CustomUtils.isPackageInstalled(getContext(),
                 "org.aospextended.udfps.resources");
