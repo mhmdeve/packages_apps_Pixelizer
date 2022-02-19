@@ -40,7 +40,6 @@ public class LockScreenSettings extends SettingsPreferenceFragment {
         if (!udfpsResPkgInstalled) {
             screen.removePreference(udfps);
         }
-        addPreferencesFromResource(R.xml.pixelizer_settings_lockscreen);
     }
 
     @Override
