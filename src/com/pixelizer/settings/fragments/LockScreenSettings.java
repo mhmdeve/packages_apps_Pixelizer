@@ -16,14 +16,11 @@
  */
 package com.pixelizer.settings.fragments;
 
-import android.os.Bundle;
-
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceScreen;
-
 import com.android.internal.logging.nano.MetricsProto;
-import com.android.internal.util.custom.CustomUtils;
+
+import android.os.Bundle;
 import com.android.settings.R;
+
 import com.android.settings.SettingsPreferenceFragment;
 
 public class LockScreenSettings extends SettingsPreferenceFragment {
@@ -32,13 +29,6 @@ public class LockScreenSettings extends SettingsPreferenceFragment {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        final PreferenceScreen screen = getPreferenceScreen();
-        boolean udfpsResPkgInstalled = CustomUtils.isPackageInstalled(getContext(),
-                "org.aospextended.udfps.resources");
-        PreferenceCategory udfps = (PreferenceCategory) screen.findPreference("udfps_category");
-        if (!udfpsResPkgInstalled) {
-            screen.removePreference(udfps);
-        }
         addPreferencesFromResource(R.xml.pixelizer_settings_lockscreen);
     }
 
