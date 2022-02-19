@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2017-2019 The PixelDust Project
      Copyright (C) 2022 PixelPlusUI
-
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
@@ -14,31 +13,35 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/lockscreen_title"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/lockscreen_title">
 
     <PreferenceCategory
         android:key="udfps_category"
         android:title="@string/udfps_category">
 
         <Preference
+            android:fragment="com.pixelizer.settings.fragments.UdfpsIconPicker"
             android:key="udfps_icon_picker"
-            android:title="@string/udfps_icon_picker_title"
             android:summary="@string/udfps_icon_picker_summary"
-            android:fragment="com.pixelizer.settings.fragments.UdfpsIconPicker" />
+            android:title="@string/udfps_icon_picker_title" />
 
         <Preference
+            android:fragment="com.pixelizer.settings.fragments.UdfpsAnimation"
             android:key="udfps_recognizing_animation_preview"
-            android:title="@string/udfps_recog_animation_effect_title"
             android:summary="@string/udfps_recog_animation_effect_summary"
-            android:fragment="com.pixelizer.settings.fragments.UdfpsAnimation"/>
-          </PreferenceCategory>
+            android:title="@string/udfps_recog_animation_effect_title" />
+    </PreferenceCategory>
 
-     <com.pixelizer.settings.preferences.SecureSettingSwitchPreference
+    <com.pixelizer.settings.preferences.SystemSettingSwitchPreference
+        android:defaultValue="false"
+        android:key="lockscreen_small_clock"
+        android:summary="@string/lockscreen_small_clock_summary"
+        android:title="@string/lockscreen_small_clock_title" />
+
+    <com.pixelizer.settings.preferences.SecureSettingSwitchPreference
+        android:defaultValue="true"
         android:key="lockscreen_battery_info"
-        android:title="@string/lockscreen_battery_info_title"
         android:summary="@string/lockscreen_battery_info_summary"
-        android:defaultValue="true" />
+        android:title="@string/lockscreen_battery_info_title" />
 </PreferenceScreen>
