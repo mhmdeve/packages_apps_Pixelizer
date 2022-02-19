@@ -21,11 +21,16 @@
         android:title="@string/udfps_category">
 
         <Preference
-            android:key="udfps_settings"
-            android:title="@string/udfps_settings_title"
-            android:summary="@string/udfps_settings_summary"
-            android:fragment="com.pixelizer.settings.fragments.UdfpsSettings" />
+            android:fragment="com.pixelizer.settings.fragments.UdfpsIconPicker"
+            android:key="udfps_icon_picker"
+            android:summary="@string/udfps_icon_picker_summary"
+            android:title="@string/udfps_icon_picker_title" />
 
+        <Preference
+            android:fragment="com.pixelizer.settings.fragments.UdfpsAnimation"
+            android:key="udfps_recognizing_animation_preview"
+            android:summary="@string/udfps_recog_animation_effect_summary"
+            android:title="@string/udfps_recog_animation_effect_title" />
     </PreferenceCategory>
 
     <com.pixelizer.settings.preferences.SystemSettingSwitchPreference
