@@ -152,4 +152,7 @@
     <!-- AppLock Stuff -->
     <string name="search">Search</string>
     <string name="search_apps">Search apps</string>
+
+    <!-- NavBar Inverse -->
+    <string name="navigation_bar_inverse_title">Invert 3 button navigation bar</string>
 </resources>

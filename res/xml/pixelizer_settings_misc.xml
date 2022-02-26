@@ -23,4 +23,9 @@
         android:summary="@string/headset_connect_player_summary"
         android:defaultValue="false"
         app:allowDividerAbove="true" />
+    <com.pixelizer.settings.preferences.SystemSettingSwitchPreference
+        android:key="navigation_bar_inverse"
+        android:title="@string/navigation_bar_inverse_title"
+        android:defaultValue="0"
+        settings:controller="com.pixelizer.settings.fragments.NavBarInversePreferenceController" />
 </PreferenceScreen>
