@@ -26,6 +26,12 @@
         android:entryValues="@array/flashlight_on_call_values"
         android:defaultValue="0" />
 
+    <com.pixelizer.settings.preferences.SystemSettingSwitchPreference
+        android:key="alert_slider_notifications"
+        android:title="@string/alert_slider_notifications_title"
+        android:summary="@string/alert_slider_notifications_summary"
+        android:defaultValue="true" />
+
     <PreferenceCategory
         android:key="incall_vib_options"
         android:title="@string/incall_vibration_category" >
