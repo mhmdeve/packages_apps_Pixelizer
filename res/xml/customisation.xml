@@ -36,7 +36,8 @@
     <com.pixelizer.settings.preferences.SecureSettingSeekBarPreference
         android:key="monet_engine_white_luminance_user"
         android:title="@string/monet_engine_white_luminance_user_title"
-        android:defaultValue="425"
+        android:dependency="monet_engine_linear_lightness"
+        android:defaultValue="400"
         android:max="1000"
         settings:min="0"
         settings:interval="100"/>
