@@ -139,12 +139,6 @@
     <string name="qs_show_battery_estimate_summary_on">Show battery estimates in QS</string>
     <string name="qs_show_battery_estimate_summary_off">Hide battery estimates in QS</string>
 
-    <!-- Clock position -->
-    <string name="statusbar_clock_position_title">Clock position</string>
-    <string name="statusbar_clock_position_left">Left</string>
-    <string name="statusbar_clock_position_center">Center</string>
-    <string name="statusbar_clock_position_right">Right</string>
-
     <!-- Keyguard force small clock -->
     <string name="lockscreen_small_clock_title">Force small clock</string>
     <string name="lockscreen_small_clock_summary">Don\'t switch to the big clock when there are no notifications</string>
