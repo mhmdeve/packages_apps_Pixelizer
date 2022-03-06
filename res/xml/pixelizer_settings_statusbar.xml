@@ -26,6 +26,11 @@
         android:fragment="com.pixelizer.settings.fragments.NetTrafficMonSettings"
         android:defaultValue="false" />
 
+    <Preference
+        android:key="status_bar_clock"
+        android:fragment="com.pixelizer.settings.fragments.ClockDateSettings"
+        android:title="@string/status_bar_clock_title" />
+
     <!-- Battery Icon Customization -->
     <PreferenceCategory
         android:title="@string/battery_options">
