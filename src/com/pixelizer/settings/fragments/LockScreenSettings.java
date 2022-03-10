@@ -16,20 +16,37 @@
  */
 package com.pixelizer.settings.fragments;
 
-import com.android.internal.logging.nano.MetricsProto;
-
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceScreen;
+import android.content.res.Resources;
 import android.os.Bundle;
+
+import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 
 import com.android.settings.SettingsPreferenceFragment;
 
 public class LockScreenSettings extends SettingsPreferenceFragment {
 
+    private static final String LOCKSCREEN_INTERFACE_CATEGORY = "lockscreen_interface_category";
+    private static final String KEY_UDFPS_SETTINGS = "udfps_settings";
+    private Preference mUdfpsSettings;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.pixelizer_settings_lockscreen);
+        PreferenceCategory interfaceCategory = (PreferenceCategory) findPreference(LOCKSCREEN_INTERFACE_CATEGORY);
+        Resources resources = getResources();
+        mUdfpsSettings = (Preference) findPreference(KEY_UDFPS_SETTINGS);
+
+        boolean haveUDFPS = resources.getBoolean(
+            com.android.internal.R.bool.config_haveUDFPS);
+        if (!haveUDFPS) {
+            interfaceCategory.removePreference(mUdfpsSettings);
+        }
     }
 
     @Override
