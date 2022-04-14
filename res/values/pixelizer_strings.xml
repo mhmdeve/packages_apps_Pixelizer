@@ -150,10 +150,6 @@
     <!-- NavBar Inverse -->
     <string name="navigation_bar_inverse_title">Invert 3 button navigation bar</string>
 
-    <!-- Alert Slider Notifications (OnePlus devices) -->
-    <string name="alert_slider_notifications_title">Alert slider notifications</string>
-    <string name="alert_slider_notifications_summary">Display notification when changing alert slider position</string>
-
     <!-- Status bar clock and date options -->
     <string name="status_bar_clock_title">Clock &amp; date settings</string>
     <string name="status_bar_clock">Clock &amp; date</string>
