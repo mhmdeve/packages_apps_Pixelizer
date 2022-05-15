@@ -20,16 +20,33 @@ import com.android.internal.logging.nano.MetricsProto;
 
 import android.os.Bundle;
 import com.android.settings.R;
+import android.content.Context;
+import androidx.preference.Preference;
+import android.content.ContentResolver;
+import android.provider.Settings;
+import android.os.UserHandle;
 
 import com.android.settings.SettingsPreferenceFragment;
 
 public class LockScreenSettings extends SettingsPreferenceFragment {
+
+    public static final String TAG = "LockScreen";
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.pixelizer_settings_lockscreen);
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        return false;
+    }
+
+    public static void reset(Context mContext) {
+        ContentResolver resolver = mContext.getContentResolver();
+        Settings.System.putIntForUser(resolver,
+                Settings.System.LOCKSCREEN_BATTERY_INFO, 1, UserHandle.USER_CURRENT);
     }
 
     @Override
