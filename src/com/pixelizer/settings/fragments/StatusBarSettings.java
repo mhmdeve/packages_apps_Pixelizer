@@ -61,14 +61,18 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String BATTERY_STYLE = "status_bar_battery_style";
     private static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String SHOW_BATTERY_PERCENT_INSIDE = "status_bar_show_battery_percent_inside";
-    private static final String QUICK_PULLDOWN = "qs_quick_pulldown";
+    private static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
 
+    private static final int PULLDOWN_DIR_NONE = 0;
+    private static final int PULLDOWN_DIR_RIGHT = 1;
+    private static final int PULLDOWN_DIR_LEFT = 2;
+    
     private SystemSettingMasterSwitchPreference mNetTrafficState;
     private SystemSettingListPreference mBatteryStyle;
     private SystemSettingSwitchPreference mBatteryPercent;
     private SystemSettingSwitchPreference mBatteryPercentInside;
     private SystemSettingListPreference mClockPosition;
-    private ListPreference mQuickPulldown;
+    private SystemSettingListPreference mQuickPulldown;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -87,12 +91,9 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         updateNetTrafficSummary(enabled);
 
         // Quick Pulldown
-        mQuickPulldown = (ListPreference) findPreference(QUICK_PULLDOWN);
+        mQuickPulldown = findPreference(STATUS_BAR_QUICK_QS_PULLDOWN);
         mQuickPulldown.setOnPreferenceChangeListener(this);
-        int quickPulldownValue = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 0, UserHandle.USER_CURRENT);
-        mQuickPulldown.setValue(String.valueOf(quickPulldownValue));
-        updateQuickPulldownSummary(quickPulldownValue);
+        updateQuickPulldownSummary(mQuickPulldown.getIntValue(0));
 
         int value = Settings.System.getIntForUser(resolver,
         BATTERY_STYLE, 0, UserHandle.USER_CURRENT);
@@ -120,6 +121,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     @Override
     public void onResume() {
         super.onResume();
+        if (getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+        
+            mQuickPulldown.setEntries(R.array.status_bar_quick_qs_pulldown_entries_rtl);
+            mQuickPulldown.setEntryValues(R.array.status_bar_quick_qs_pulldown_values);
+        }
         updateNetTrafficSummary();
     }
 
@@ -183,21 +189,31 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         mNetTrafficState.setSummary(summary);
     }
 
-    private void updateQuickPulldownSummary(int value) {
-        Resources res = getResources();
 
-        if (value == 0) {
-            // quick pulldown deactivated
-            mQuickPulldown.setSummary(res.getString(R.string.quick_pulldown_off));
-        } else if (value == 3) {
-            // quick pulldown always
-            mQuickPulldown.setSummary(res.getString(R.string.quick_pulldown_summary_always));
-        } else {
-            String direction = res.getString(value == 2
-                    ? R.string.quick_pulldown_left
-                    : R.string.quick_pulldown_right);
-            mQuickPulldown.setSummary(res.getString(R.string.quick_pulldown_summary, direction));
+    private void updateQuickPulldownSummary(int value) {
+        String summary="";
+        if (getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL){
+            if (value == PULLDOWN_DIR_LEFT) {
+                value = PULLDOWN_DIR_RIGHT;
+            }else if (value == PULLDOWN_DIR_RIGHT) {
+                value = PULLDOWN_DIR_LEFT;
+            }
         }
+        switch (value) {
+            case PULLDOWN_DIR_NONE:
+                summary = getResources().getString(
+                    R.string.status_bar_quick_qs_pulldown_off);
+                break;
+            case PULLDOWN_DIR_LEFT:
+                summary = getResources().getString(
+                    R.string.status_bar_quick_qs_pulldown_summary_left_edge);
+                break;
+            case PULLDOWN_DIR_RIGHT:
+                summary = getResources().getString(
+                    R.string.status_bar_quick_qs_pulldown_summary_right_edge);
+                break;
+        }
+        mQuickPulldown.setSummary(summary);
     }
 
     @Override

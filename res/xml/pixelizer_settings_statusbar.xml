@@ -76,9 +76,8 @@
         <!-- Quick pulldown -->
         <com.pixelizer.settings.preferences.SystemSettingIntListPreference
             android:key="qs_quick_pulldown"
-            android:entries="@array/quick_pulldown_entries"
-            android:entryValues="@array/quick_pulldown_values"
-            android:persistent="false"
-            android:defaultValue="0"
-            android:title="@string/quick_pulldown_title" />
+            android:title="@string/status_bar_quick_qs_pulldown_title"
+            android:entries="@array/status_bar_quick_qs_pulldown_entries"
+            android:entryValues="@array/status_bar_quick_qs_pulldown_values"
+            android:defaultValue="0" />
 </PreferenceScreen>
