@@ -2,6 +2,7 @@
 <!-- Copyright (C) 2010 Daniel Nilsson
      Copyright (C) 2013 Slimroms
      Copyright (C) 2017-2019 The PixelDust Project
+     Copyright (C) 2022 PixelPlusUI
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -111,7 +112,7 @@
 
     </LinearLayout>
 
-    <com.yasp.settings.preferences.ColorPickerView
+    <com.pixelizer.settings.preferences.ColorPickerView
         android:id="@+id/color_picker_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -133,7 +134,7 @@
         android:layout_marginEnd="4dp"
         android:layout_marginTop="2dp">
 
-        <com.yasp.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.ColorPickerPanelView
             android:id="@+id/userset1_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -141,7 +142,7 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="0.5" />
 
-        <com.yasp.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.ColorPickerPanelView
             android:id="@+id/userset2_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -149,7 +150,7 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="0.5" />
 
-        <com.yasp.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.ColorPickerPanelView
             android:id="@+id/userset3_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -157,7 +158,7 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="0.5" />
 
-        <com.yasp.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.ColorPickerPanelView
             android:id="@+id/userset4_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -165,7 +166,7 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="0.5" />
 
-        <com.yasp.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.ColorPickerPanelView
             android:id="@+id/userset5_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -173,7 +174,7 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="0.5" />
 
-        <com.yasp.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.ColorPickerPanelView
             android:id="@+id/userset6_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -199,7 +200,7 @@
         android:orientation="horizontal"
         android:layout_marginBottom="10dp">
 
-        <com.yasp.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.ColorPickerPanelView
             android:id="@+id/old_color_panel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -214,7 +215,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp" />
 
-        <com.yasp.settings.preferences.ColorPickerPanelView
+        <com.pixelizer.settings.preferences.ColorPickerPanelView
             android:id="@+id/new_color_panel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

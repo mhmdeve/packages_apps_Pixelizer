@@ -13,7 +13,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yasp.settings">
+    package="com.pixelizer.settings">
 
     <uses-sdk
         android:minSdkVersion="29" />

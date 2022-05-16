@@ -1,12 +1,12 @@
 android_library {
 
-    name: "YASP-preference",
+    name: "Pixelizer-preference",
 
     optimize: {
         enabled: false,
     },
 
-    srcs: ["src/com/yasp/settings/preferences/**/*.java"],
+    srcs: ["src/com/pixelizer/settings/preferences/**/*.java"],
 
     static_libs: [
         "androidx.core_core",
