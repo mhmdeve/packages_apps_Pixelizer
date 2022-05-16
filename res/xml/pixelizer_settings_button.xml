@@ -20,7 +20,7 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
         <!-- Volume panel to left -->
-        <com.pixelizer.settings.preferences.SystemSettingSwitchPreference
+        <com.pixelizer.settings.preferences.SecureSettingSwitchPreference
             android:key="volume_panel_on_left"
             android:title="@string/volume_panel_on_left_title"
             android:summary="@string/volume_panel_on_left_summary"
