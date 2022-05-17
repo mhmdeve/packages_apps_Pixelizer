@@ -54,11 +54,12 @@
             android:icon="@drawable/ic_settings_navbar"/> -->
 
         <!-- Gestures -->
-        <!-- <Preference
+        <Preference
             android:key="gestures_category"
             android:title="@string/gestures_title"
-            android:fragment="com.pixelizer.settings.fragments.GestureSettings"
-            android:icon="@drawable/ic_settings_pdgestures"/> -->
+            android:icon="@drawable/ic_settings_pdgestures"
+            android:fragment="com.android.settings.gestures.GestureSettings"
+            settings:controller="com.android.settings.gestures.GesturesSettingPreferenceController"/>
 
         <!-- Lock Screen -->
         <Preference
