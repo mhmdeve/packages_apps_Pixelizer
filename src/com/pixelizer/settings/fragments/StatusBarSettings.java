@@ -58,9 +58,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener, Indexable {
 
     private static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
-    private static final String BATTERY_STYLE = "status_bar_battery_style";
-    private static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
-    private static final String SHOW_BATTERY_PERCENT_INSIDE = "status_bar_show_battery_percent_inside";
     private static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
 
     private static final int PULLDOWN_DIR_NONE = 0;
@@ -68,9 +65,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final int PULLDOWN_DIR_LEFT = 2;
     
     private SystemSettingMasterSwitchPreference mNetTrafficState;
-    private SystemSettingListPreference mBatteryStyle;
-    private SystemSettingSwitchPreference mBatteryPercent;
-    private SystemSettingSwitchPreference mBatteryPercentInside;
     private SystemSettingListPreference mClockPosition;
     private SystemSettingListPreference mQuickPulldown;
 
@@ -95,27 +89,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         mQuickPulldown.setOnPreferenceChangeListener(this);
         updateQuickPulldownSummary(mQuickPulldown.getIntValue(0));
 
-        int value = Settings.System.getIntForUser(resolver,
-        BATTERY_STYLE, 0, UserHandle.USER_CURRENT);
-        mBatteryPercentInside = (SystemSettingSwitchPreference)
-        findPreference(SHOW_BATTERY_PERCENT_INSIDE);
-        mBatteryPercent = (SystemSettingSwitchPreference)
-                findPreference(SHOW_BATTERY_PERCENT);
-        enabled = Settings.System.getIntForUser(resolver,
-                SHOW_BATTERY_PERCENT, 0, UserHandle.USER_CURRENT) == 1;
-        mBatteryPercent.setChecked(enabled);
-        mBatteryPercent.setOnPreferenceChangeListener(this);
-        mBatteryPercentInside.setEnabled(enabled);
-
-        mBatteryStyle = (SystemSettingListPreference)
-                findPreference(BATTERY_STYLE);
-        value = Settings.System.getIntForUser(resolver,
-                BATTERY_STYLE, 0, UserHandle.USER_CURRENT);
-        mBatteryStyle.setValue(Integer.toString(value));
-        mBatteryStyle.setSummary(mBatteryStyle.getEntry());
-        mBatteryStyle.setOnPreferenceChangeListener(this);
-        updatePercentEnablement(value != 2);
-
     }
 
     @Override
@@ -138,20 +111,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(resolver, NETWORK_TRAFFIC_STATE, enabled ? 1 : 0);
             updateNetTrafficSummary(enabled);
             return true;
-        } else if (preference == mBatteryStyle) {
-            int value = Integer.valueOf((String) objValue);
-            int index = mBatteryStyle.findIndexOfValue((String) objValue);
-            mBatteryStyle.setSummary(mBatteryStyle.getEntries()[index]);
-            Settings.System.putIntForUser(resolver,
-                    BATTERY_STYLE, value, UserHandle.USER_CURRENT);
-            updatePercentEnablement(value != 2);
-            return true;
-        } else if (preference == mBatteryPercent) {
-            boolean enabled = (boolean) objValue;
-            Settings.System.putInt(resolver,
-                    SHOW_BATTERY_PERCENT, enabled ? 1 : 0);
-            mBatteryPercentInside.setEnabled(enabled);
-            return true;
         } else if (preference == mQuickPulldown) {
             int quickPulldownValue = Integer.valueOf((String) objValue);
             Settings.System.putIntForUser(resolver, Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
@@ -160,11 +119,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             return true;
 	}
         return false;
-    }
-
-    private void updatePercentEnablement(boolean enabled) {
-        mBatteryPercent.setEnabled(enabled);
-        mBatteryPercentInside.setEnabled(enabled && mBatteryPercent.isChecked());
     }
 
     private void updateNetTrafficSummary() {
